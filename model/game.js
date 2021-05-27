@@ -20,39 +20,33 @@ const Game = db.define('game', {
     },
     isCampaign: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true,
+    },
+    threatLevel: {
+        type: DataTypes.INTEGER,
     },
     city: {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    cityDamaged: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     scenario: {
         type: DataTypes.STRING,
     },
-    character: {
-        type: DataTypes.STRING
+    characters: {
+        type: DataTypes.ARRAY(DataTypes.JSON)
     },
-    firstGame: {
-        type: DataTypes.BOOLEAN,
-        allowNull: true
+    battle: {
+        type: DataTypes.ENUM(
+            'First', 'Second'
+        ),
     },
-    secondGame: {
-        type: DataTypes.BOOLEAN,
-        allowNull: true
+    difficulty: {
+        type: DataTypes.INTEGER,
     },
-    upgradedCharacterOne: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    upgradedCharacterTwo: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    upgradedCharacterThree: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-
 });
 
 module.exports = Game;

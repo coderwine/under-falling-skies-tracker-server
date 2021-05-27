@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { GameModel, UserModel, WorldModel } = require('../model');
+const { GameModel, UserModel, WorldModel, FeedbackModel } = require('../model');
 
 //! GET all - Games
 router.get('/games', async (req, res) => {
@@ -34,12 +34,28 @@ router.get('/worlds', async (req,res) => {
     
 })
 
+//* Consider Leaderboard options on Splash/Landing Page
 
-//! GET all - Users (ADMIN ONLY);
-//* may consider a leaderboard of sorts
+
+//! ADMIN ONLY
+//? GET all - Feedback 
+router.get('/feedback', async(req,res) => {
+
+    try {
+        const allFeedback = await FeedbackModel.findAll();
+        res.status(200).json(allFeedback);
+    } catch (error) {
+        res.status(200).json({
+            msg: `Failed to get feedback info: ${error}`
+        })
+    }
+
+}) 
+
+//? GET all - Users
 
 router.get('/users', async(req,res) => {
-    console.log('USERS GET ALL HIT');
+    // console.log('USERS GET ALL HIT');
     try {
         const allUsers = await UserModel.findAll();
         res.status(200).json(allUsers)

@@ -11,6 +11,7 @@ const World = db.define('world', {
     },
     worldName: {
         type: DataTypes.STRING,
+        allowNull: false
     }
 })
 
